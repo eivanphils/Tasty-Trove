@@ -1,0 +1,1 @@
+export 'package:tasty_trove/screens/get_started_screen.dart';

@@ -1,0 +1,1 @@
+export 'package:tasty_trove/widgets/onboarding_background.dart';
