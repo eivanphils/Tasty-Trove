@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tasty_trove/router/app_routes.dart';
 
-import 'package:tasty_trove/widgets/widgets.dart';
+import 'package:tasty_trove/router/app_routes.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:tasty_trove/screens/screens.dart';
 
 class AppRoutes {

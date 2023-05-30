@@ -96,7 +96,7 @@ class _PageLayout extends StatelessWidget {
           SizedBox(
               height: size.height * 0.6,
               width: size.width,
-              child: Lottie.asset(illustration))
+              child: Lottie.asset(illustration, repeat: false))
         ],
       ),
     );
