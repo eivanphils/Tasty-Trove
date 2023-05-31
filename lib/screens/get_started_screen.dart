@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:lottie/lottie.dart';
 
+import 'package:tasty_trove/theme/app_theme.dart';
 import 'package:tasty_trove/widgets/widgets.dart';
 
 class GetStartedScreen extends StatefulWidget {
@@ -30,7 +31,8 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                 illustration: 'assets/animations/ratings.json',
                 title: 'Easy to cook',
                 description:
-                    'Let\'s turn "kitchen time" into \'tasty magic\' with recipes that make cooking a breeze!'),
+                    'Let\'s turn "kitchen time" into \'tasty magic\' with recipes that make cooking a breeze!',
+                isLastPage: true,),
           ]))
         ],
       )),
@@ -46,22 +48,27 @@ class _InitialPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Stack(
       children: [
-
         Positioned(
-          top: size.height * 0.08,
-          left: 30,
-          child: RichText(
-            text: TextSpan(
-              style: DefaultTextStyle.of(context).style,
-              children: const <TextSpan>[
-                TextSpan(text: 'Welcome to\n', style: TextStyle(fontSize: 18, color: Colors.white)),
-                TextSpan(text: 'TASTY\nTROVE\n', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40, color: Colors.white)),
-                TextSpan(text: 'Your recipe\nexpedition!', style: TextStyle(fontSize: 18, color: Colors.white)),
-              ]
-            ),
-          )),
-
-
+            top: size.height * 0.08,
+            left: 30,
+            child: RichText(
+              text: TextSpan(
+                  style: DefaultTextStyle.of(context).style,
+                  children: const <TextSpan>[
+                    TextSpan(
+                        text: 'Welcome to\n',
+                        style: TextStyle(fontSize: 18, color: Colors.white)),
+                    TextSpan(
+                        text: 'TASTY\nTROVE\n',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40,
+                            color: Colors.white)),
+                    TextSpan(
+                        text: 'Your recipe\nexpedition!',
+                        style: TextStyle(fontSize: 18, color: Colors.white)),
+                  ]),
+            )),
         Positioned.fill(
           child: Align(
             alignment: Alignment.center,
@@ -79,11 +86,17 @@ class _InitialPage extends StatelessWidget {
 
 class _PageLayout extends StatelessWidget {
   final String illustration;
-  final String? title;
-  final String? description;
+  final String title;
+  final String description;
+  final bool isLastPage;
 
   const _PageLayout(
-      {Key? key, required this.illustration, this.title, this.description})
+      {Key? key,
+      required this.illustration,
+      required this.title,
+      required this.description,
+      this.isLastPage = false
+    })
       : super(key: key);
 
   @override
@@ -93,10 +106,50 @@ class _PageLayout extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          SizedBox(
-              height: size.height * 0.6,
+          SizedBox(height: size.height * 0.2,),
+          Container(
+              color: Colors.red,
               width: size.width,
-              child: Lottie.asset(illustration, repeat: false))
+              child: Lottie.asset(illustration, repeat: false)),
+          const SizedBox(
+            height: 60,
+          ),
+          Text(title,
+              style: const TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center),
+          const SizedBox(
+            height: 40,
+          ),
+          SizedBox(
+            width: 300,
+            child: Text(description,
+                style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500),
+                textAlign: TextAlign.center),
+          ),
+
+          if(isLastPage)
+            const SizedBox(height: 40,),
+          if(isLastPage)
+            SizedBox(
+              width: 150,
+              child: ElevatedButton(
+                onPressed: (){},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: AppTheme.primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)
+                  )
+                ),
+                child: const Text('START', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)
+              ),
+            )
         ],
       ),
     );
