@@ -6,9 +6,11 @@ class AppRoutes {
   static const initialRoute = 'get-started';
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
-    Map<String, Widget Function(BuildContext)> appRoutes = {};
-    appRoutes.addAll(
-        {'get-started': (BuildContext context) => const GetStartedScreen()});
+    Map<String, Widget Function(BuildContext)> appRoutes = {
+      'get-started': (BuildContext context) => const GetStartedScreen(),
+      'login': (BuildContext context) => const LoginScreen()
+    };
+   
     return appRoutes;
   }
 
