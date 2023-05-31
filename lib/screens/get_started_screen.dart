@@ -13,6 +13,9 @@ class GetStartedScreen extends StatefulWidget {
 }
 
 class _GetStartedScreenState extends State<GetStartedScreen> {
+  final PageController _pageController = PageController();
+  final ValueNotifier<int> selectedIndex = ValueNotifier(0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,20 +23,26 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
           child: Column(
         children: [
           Expanded(
-              child: PageView(children: const [
-            _InitialPage(),
-            _PageLayout(
-                illustration: 'assets/animations/recipes.json',
-                title: 'Find recipes',
-                description:
-                    'Unleash your inner \'flavor-seeker\' and embark on a culinary adventure!'),
-            _PageLayout(
+              child: PageView(
+            controller: _pageController,
+            children: const [
+              _InitialPage(),
+              _PageLayout(
+                  illustration: 'assets/animations/recipes.json',
+                  title: 'Find recipes',
+                  description:
+                      'Unleash your inner \'flavor-seeker\' and embark on a culinary adventure!'),
+              _PageLayout(
                 illustration: 'assets/animations/ratings.json',
                 title: 'Easy to cook',
                 description:
                     'Let\'s turn "kitchen time" into \'tasty magic\' with recipes that make cooking a breeze!',
-                isLastPage: true,),
-          ]))
+                isLastPage: true,
+              ),
+            ],
+            onPageChanged: (value) => selectedIndex.value = value,
+          )),
+          _BottomPagination(selectedIndex: selectedIndex)
         ],
       )),
     );
@@ -95,63 +104,99 @@ class _PageLayout extends StatelessWidget {
       required this.illustration,
       required this.title,
       required this.description,
-      this.isLastPage = false
-    })
+      this.isLastPage = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          SizedBox(height: size.height * 0.2,),
-          Container(
-              color: Colors.red,
-              width: size.width,
-              child: Lottie.asset(illustration, repeat: false)),
-          const SizedBox(
-            height: 60,
-          ),
-          Text(title,
-              style: const TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center),
-          const SizedBox(
-            height: 40,
-          ),
-          SizedBox(
-            width: 300,
-            child: Text(description,
-                style: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500),
-                textAlign: TextAlign.center),
-          ),
-
-          if(isLastPage)
-            const SizedBox(height: 40,),
-          if(isLastPage)
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
             SizedBox(
-              width: 150,
-              child: ElevatedButton(
-                onPressed: (){},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: AppTheme.primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)
-                  )
-                ),
-                child: const Text('START', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)
+              height: size.height * 0.2,
+            ),
+            SizedBox(
+                width: size.width,
+                child: Lottie.asset(illustration, repeat: false)),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(title,
+                style: const TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center),
+            const SizedBox(
+              height: 30,
+            ),
+            SizedBox(
+              width: 300,
+              child: Text(description,
+                  style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500),
+                  textAlign: TextAlign.center),
+            ),
+            if (isLastPage)
+              const SizedBox(
+                height: 80,
               ),
-            )
-        ],
+            if (isLastPage)
+              SizedBox(
+                width: 150,
+                child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: AppTheme.primaryColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30))),
+                    child: const Text(
+                      'START',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    )),
+              ),
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class _BottomPagination extends StatelessWidget {
+  final ValueNotifier<int> selectedIndex;
+
+  const _BottomPagination({Key? key, required this.selectedIndex})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: selectedIndex,
+      builder: (context, index, child) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 16, bottom: 32),
+          child: Wrap(
+              spacing: 8,
+              children: List.generate(3, (indexIndicator) {
+                return AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  height: 10,
+                  width: indexIndicator == index ? 26 : 10,
+                  decoration: BoxDecoration(
+                    color: indexIndicator == index ? Colors.white : Colors.white.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(16)
+                  ),
+                );
+              })),
+        );
+      },
     );
   }
 }
