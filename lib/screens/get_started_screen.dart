@@ -186,7 +186,7 @@ class _PaginationInfo extends StatelessWidget {
       valueListenable: selectedIndex,
       builder: (context, index, child) {
         return Padding(
-          padding: const EdgeInsets.only(top: 16, bottom: 10),
+          padding: const EdgeInsets.only(top: 16),
           child: Wrap(
               spacing: 8,
               children: List.generate(3, (indexIndicator) {
@@ -221,7 +221,7 @@ class _BottomPagination extends StatelessWidget {
       valueListenable: selectedIndex,
       builder: (context, index, child) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+          padding: const EdgeInsets.only(top: 20, bottom: 40, left: 24, right: 24),
           child: Row(
               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               // mainAxisAlignment: MainAxisAlignment.spaceAround,
