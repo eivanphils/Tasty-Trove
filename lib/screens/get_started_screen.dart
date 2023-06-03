@@ -156,7 +156,7 @@ class _PageLayout extends StatelessWidget {
             SizedBox(
               width: 150,
               child: ElevatedButton(
-                  onPressed: () => Navigator.pushReplacementNamed(context, LoginScreen.routeName),
+                  onPressed: () => Navigator.pushReplacementNamed(context, MainScreen.routeName),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: AppTheme.primaryColor,

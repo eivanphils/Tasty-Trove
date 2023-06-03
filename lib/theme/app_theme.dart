@@ -7,7 +7,13 @@ class AppTheme {
   static const String logo = 'assets/logo.png';
   static const String logoWhite = 'assets/logo-white.png';
   static const double radius = 15;
-
+  static BoxShadow boxShadow() {
+      return const BoxShadow(
+          color: Color.fromRGBO(0, 0, 0, 0.2),
+          blurRadius: 4,
+          spreadRadius: 1,
+          offset: Offset(0, 1.5));
+    }
   static ThemeData lightTheme = ThemeData(useMaterial3: true).copyWith(
     inputDecorationTheme: const InputDecorationTheme(
       fillColor: Colors.white,
@@ -23,5 +29,16 @@ class AppTheme {
       border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(radius))),
     ),
+
+    navigationBarTheme:  NavigationBarThemeData(
+      indicatorColor: AppTheme.orangeColor,
+      backgroundColor: AppTheme.primaryColor,
+      iconTheme: MaterialStateProperty.all<IconThemeData>(
+        const IconThemeData(color: Colors.white, size: 25)
+      ),
+      labelTextStyle: MaterialStateProperty.all<TextStyle>(
+        const TextStyle(color: Colors.white)
+      )
+    )
   );
 }
