@@ -156,7 +156,7 @@ class _PageLayout extends StatelessWidget {
             SizedBox(
               width: 150,
               child: ElevatedButton(
-                  onPressed: () => Navigator.pushReplacementNamed(context, MainScreen.routeName),
+                  onPressed: () => Navigator.pushReplacementNamed(context, LoginScreen.routeName),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: AppTheme.primaryColor,
@@ -223,8 +223,6 @@ class _BottomPagination extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 40, left: 24, right: 24),
           child: Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _Bottom(

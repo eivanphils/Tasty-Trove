@@ -4,6 +4,7 @@ class AppTheme {
   static const Color primaryColor = Color(0xFF44CC77);
   static const Color secondaryColor = Color(0xFF24A755);
   static const Color orangeColor = Color(0xFFFF9647);
+  static const Color greyColor = Color(0xFF404040);
   static const String logo = 'assets/logo.png';
   static const String logoWhite = 'assets/logo-white.png';
   static const double radius = 15;
@@ -38,6 +39,12 @@ class AppTheme {
       ),
       labelTextStyle: MaterialStateProperty.all<TextStyle>(
         const TextStyle(color: Colors.white)
+      )
+    ),
+
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        overlayColor: MaterialStateProperty.all(orangeColor.withOpacity(0.5)),
       )
     )
   );

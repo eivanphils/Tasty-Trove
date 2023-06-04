@@ -86,7 +86,7 @@ class _LoginForm extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
                 onPressed: () => Navigator.pushReplacementNamed(
-                    context, HomeScreen.routeName),
+                    context, MainScreen.routeName),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: AppTheme.primaryColor,
