@@ -26,7 +26,12 @@ class AppTheme {
     secondaryColor,
     orangeColor,
     brownColor,
-    yellowColor
+    yellowColor,
+    Colors.amber,
+    Colors.cyan,
+    Colors.blue,
+    Colors.indigo,
+    Colors.lightBlue
   ];
 
   static ThemeData lightTheme = ThemeData(useMaterial3: true).copyWith(

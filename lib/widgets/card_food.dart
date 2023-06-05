@@ -16,7 +16,7 @@ class CardFood extends StatelessWidget {
       height: 179,
       width: 179,
       decoration: BoxDecoration(
-          color: color.withOpacity(0.9),
+          color: color.withOpacity(0.7),
           borderRadius: BorderRadius.circular(30)),
       child:
           const Column(mainAxisAlignment: MainAxisAlignment.center, children: [
