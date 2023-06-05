@@ -115,12 +115,35 @@ class _RecipeCategories extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: const [
-              CategoryTag(label: 'All', icon: Icons.all_out,),
-              CategoryTag(label: 'Vegetable', icon: Icons.vertical_align_center_sharp,),
-              CategoryTag(label: 'Pizza', icon: Icons.all_out,),
-              CategoryTag(label: 'Italian', icon: Icons.all_out,),
-              CategoryTag(label: 'Romana', icon: Icons.all_out,),
-              CategoryTag(label: 'Spain', icon: Icons.all_out,),
+              CategoryTag(
+                label: 'All',
+                isSelected: true,
+              ),
+              CategoryTag(
+                label: 'Vegetable',
+                icon: Icons.vertical_align_center_sharp,
+                isSelected: false,
+              ),
+              CategoryTag(
+                label: 'Pizza',
+                icon: Icons.all_out,
+                isSelected: false,
+              ),
+              CategoryTag(
+                label: 'Italian',
+                icon: Icons.all_out,
+                isSelected: false,
+              ),
+              CategoryTag(
+                label: 'Romana',
+                icon: Icons.all_out,
+                isSelected: false,
+              ),
+              CategoryTag(
+                label: 'Spain',
+                icon: Icons.all_out,
+                isSelected: false,
+              ),
             ],
           ),
         ),
