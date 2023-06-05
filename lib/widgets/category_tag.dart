@@ -14,7 +14,7 @@ class CategoryTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.only(right: 10),
+        margin: const EdgeInsets.only(left: 20),
         child: ActionChip(
           labelStyle: TextStyle(
               color: isSelected ? Colors.white : AppTheme.greyColor,

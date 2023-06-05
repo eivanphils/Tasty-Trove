@@ -10,17 +10,35 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _Header(),
+            const _Header(),
 
-            _SearchBar(),
+            const _SearchBar(),
 
-            _RecipeCategories()
+            const _RecipeCategories(),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Text(
+                'Daily food advice',
+                style: titleStyle(),
+              ),
+            ),
 
             // TOdO: last  food
+            SizedBox(
+              height: 180,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 6,
+                  itemBuilder: (BuildContext context, int index) {
+                    return const CardFood();
+                  }),
+            )
           ],
         ),
       ),
@@ -40,12 +58,9 @@ class _Header extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
+          Text(
             'What do you want\nto cook today?',
-            style: TextStyle(
-                color: AppTheme.greyColor,
-                fontSize: 20,
-                fontWeight: FontWeight.bold),
+            style: titleStyle(fontSize: 20),
           ),
           Image.asset(
             AppTheme.logo,
@@ -93,12 +108,9 @@ class _RecipeCategories extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Popular lunch recipes',
-                style: TextStyle(
-                    color: AppTheme.greyColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold),
+                style: titleStyle(),
               ),
               TextButton(
                   onPressed: () {},
@@ -109,8 +121,7 @@ class _RecipeCategories extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          padding: const EdgeInsets.only(left: 20),
+        SizedBox(
           height: 50,
           child: ListView(
             scrollDirection: Axis.horizontal,
@@ -147,8 +158,24 @@ class _RecipeCategories extends StatelessWidget {
             ],
           ),
         ),
-        const Text('asd')
+        Container(
+          height: 180,
+          margin: const EdgeInsets.only(top: 10),
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 6,
+              itemBuilder: (BuildContext context, int index) {
+                return const CardFood();
+              }),
+        )
       ],
     );
   }
+}
+
+TextStyle titleStyle({double fontSize = 16}) {
+  return TextStyle(
+      color: AppTheme.greyColor,
+      fontSize: fontSize,
+      fontWeight: FontWeight.bold);
 }
