@@ -12,34 +12,35 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const _Header(),
-
-            const _SearchBar(),
-
-            const _RecipeCategories(),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: Text(
-                'Daily food advice',
-                style: titleStyle(),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const _Header(),
+        
+              const _SearchBar(),
+        
+              const _RecipeCategories(),
+        
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: Text(
+                  'Daily food advice',
+                  style: titleStyle(),
+                ),
               ),
-            ),
-
-            // TOdO: last  food
-            SizedBox(
-              height: 180,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 6,
-                  itemBuilder: (BuildContext context, int index) {
-                    return const CardFood();
-                  }),
-            )
-          ],
+        
+              SizedBox(
+                height: 180,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 6,
+                    itemBuilder: (BuildContext context, int index) {
+                      return const CardFood();
+                    }),
+              ),
+            ],
+          ),
         ),
       ),
     );
