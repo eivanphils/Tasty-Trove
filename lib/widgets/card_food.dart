@@ -3,6 +3,7 @@ import 'package:tasty_trove/screens/recipe_detail_screen.dart';
 
 import 'package:tasty_trove/theme/app_theme.dart';
 import 'package:tasty_trove/utils/random_number.dart';
+import 'package:tasty_trove/widgets/widgets.dart';
 
 class CardFood extends StatelessWidget {
   const CardFood({Key? key}) : super(key: key);
@@ -23,11 +24,7 @@ class CardFood extends StatelessWidget {
             borderRadius: BorderRadius.circular(30)),
         child:
             const Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          CircleAvatar(
-            radius: 50, // Define el tamaño del círculo
-            backgroundImage: NetworkImage(
-                AppTheme.imageDemo), // Especifica la URL de la imagen
-          ),
+          RecipeImage(),
           SizedBox(
             height: 10,
           ),
