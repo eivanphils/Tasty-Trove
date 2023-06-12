@@ -7,12 +7,13 @@ class AppRoutes {
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
-      'get-started': (BuildContext context) => const GetStartedScreen(),
-      'login': (BuildContext context) => const LoginScreen(),
-      'main': (BuildContext context) => const MainScreen(),
-      'home': (BuildContext context) => const HomeScreen(),
-      'profile': (BuildContext context) => const ProfileScreen(),
-      'settings': (BuildContext context) => const SettingsScreen(),
+      GetStartedScreen.routeName: (BuildContext context) => const GetStartedScreen(),
+      LoginScreen.routeName: (BuildContext context) => const LoginScreen(),
+      MainScreen.routeName: (BuildContext context) => const MainScreen(),
+      HomeScreen.routeName: (BuildContext context) => const HomeScreen(),
+      ProfileScreen.routeName: (BuildContext context) => const ProfileScreen(),
+      SettingsScreen.routeName: (BuildContext context) => const SettingsScreen(),
+      RecipeDetailScreen.routeName: (BuildContext context) => const RecipeDetailScreen(),
     };
    
     return appRoutes;
