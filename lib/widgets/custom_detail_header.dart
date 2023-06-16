@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:tasty_trove/theme/app_theme.dart';
 import 'package:tasty_trove/widgets/widgets.dart';
 
@@ -27,56 +28,12 @@ class CustomDetailHeader extends StatelessWidget {
               ),
             ),
           ),
-  
-          const Positioned(
-            left: 20,
-            top: 55,
-            child: Align(
-              child: SizedBox(
-                  width: 36,
-                  height: 36,
-                  child: IconButton(
-                      onPressed: null, icon: Icon(Icons.arrow_back))),
-            ),
-          ),
-          const Positioned(
-            left: 140,
-            top: 65,
-            child: Align(
-              child: SizedBox(
-                width: 143,
-                height: 19,
-                child: Text(
-                  'Classic Greek Salad',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 12),
-                ),
-              ),
-            ),
-          ),
-          const Positioned(
-            right: 20,
-            top: 55,
-            child: Align(
-              child: SizedBox(
-                width: 36,
-                height: 36,
-                child:
-                    IconButton(onPressed: null, icon: Icon(Icons.heart_broken)),
-              ),
-            ),
-          ),
 
-          Positioned(
-            top: 110,
-            child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    boxShadow: [AppTheme.boxShadow()]),
-                child: const RecipeImage(
-                  radius: 70,
-                )),
-          ),
+          const _BackButton(),
+          const _Title(),
+          const _FavoriteButton(),
+
+          const _RecipeImage(),
 
           _BoxCard(size: size)
         ],
@@ -96,6 +53,94 @@ class CustomDetailHeader extends StatelessWidget {
           bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)));
 }
 
+class _BackButton extends StatelessWidget {
+  const _BackButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Positioned(
+      left: 20,
+      top: 55,
+      child: IconButton(
+          onPressed: null,
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: Colors.white,
+            size: 30,
+          )),
+    );
+  }
+}
+
+class _Title extends StatelessWidget {
+  const _Title({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Positioned(
+      top: 70,
+      child: Align(
+        alignment: Alignment.center,
+        child: Text(
+          'Classic Greek Salad',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+      ),
+    );
+  }
+}
+
+class _FavoriteButton extends StatelessWidget {
+  const _FavoriteButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      right: 20,
+      top: 55,
+      child: IconButton(
+          onPressed: null,
+          icon: CircleAvatar(
+            radius: 18,
+            backgroundColor: Colors.white,
+            child: Icon(
+              Icons.favorite_border_rounded,
+              color: Colors.red[300],
+              size: 25,
+            ),
+          )),
+    );
+  }
+}
+
+class _RecipeImage extends StatelessWidget {
+  const _RecipeImage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 110,
+      child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              boxShadow: [AppTheme.boxShadow()]),
+          child: const RecipeImage(
+            radius: 70,
+          )),
+    );
+  }
+}
+
 class _BoxCard extends StatelessWidget {
   const _BoxCard({
     Key? key,
@@ -112,7 +157,6 @@ class _BoxCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.fromLTRB(61, 15, 61, 15),
         width: size.width * 0.9,
-        height: 98,
         decoration: BoxDecoration(
           color: const Color(0xffffffff),
           borderRadius: BorderRadius.circular(30),
@@ -130,7 +174,10 @@ class _BoxCard extends StatelessWidget {
             Text(
               'Classic Greek Salad - Recipe',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 9),
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: AppTheme.greyColor),
             ),
             SizedBox(
               height: 10,
@@ -138,11 +185,34 @@ class _BoxCard extends StatelessWidget {
             Text(
               'Lorem ipsum dolor amet, consectetur ',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 9),
+              style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500,
+                  color: AppTheme.grey2Color),
             ),
             SizedBox(
               height: 10,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.star_rounded, size: 18, color: AppTheme.yellow2Color),
+                Icon(Icons.star_rounded, size: 18, color: AppTheme.yellow2Color),
+                Icon(Icons.star_rounded, size: 18, color: AppTheme.yellow2Color),
+                Icon(Icons.star_rounded, size: 18, color: AppTheme.yellow2Color),
+                Icon(Icons.star_border_rounded, size: 18, color: AppTheme.yellow2Color),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  '4.5',
+                  style: TextStyle(
+                      color: AppTheme.yellow2Color,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold),
+                )
+              ],
+            )
           ],
         ),
       ),
