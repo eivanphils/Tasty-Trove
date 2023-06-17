@@ -7,6 +7,7 @@ class AppTheme {
   static const Color orangeColor = Color(0xFFFF9647);
   static const Color greyColor = Color(0xFF404040);
   static const Color grey2Color = Color(0xFFA1A1A1);
+  static const Color grey3Color = Color(0xFFF0F0F0);
   static const Color yellowColor = Color(0xFFFFD698);
   static const Color yellow2Color = Color(0xFFFFB015);
   static const Color brownColor = Color(0xFF99766E);

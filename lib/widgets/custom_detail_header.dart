@@ -60,12 +60,12 @@ class _BackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Positioned(
+    return Positioned(
       left: 20,
       top: 55,
       child: IconButton(
-          onPressed: null,
-          icon: Icon(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(
             Icons.arrow_back_rounded,
             color: Colors.white,
             size: 30,
