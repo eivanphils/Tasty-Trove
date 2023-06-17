@@ -10,13 +10,19 @@ class RecipeDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    final arguments =
+        ModalRoute.of(context)?.settings.arguments as Map<String, String>?;
+    final String? tag = arguments?['tag'];
+    print(arguments);
+    print(tag);
+
+    return  Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Custom header
-            CustomDetailHeader(),
+            CustomDetailHeader(tag: tag!,),
 
             SizedBox(
               height: 30,
@@ -88,12 +94,18 @@ class _Ingredients extends StatelessWidget {
             RichText(
               text: const TextSpan(
                 text: 'Green tea\n',
-                style: TextStyle(fontSize: 14, color: AppTheme.greyColor, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 14,
+                    color: AppTheme.greyColor,
+                    fontWeight: FontWeight.bold),
                 children: <TextSpan>[
                   TextSpan(
                     text:
                         '2 teaspoons (6g) Japanese matcha green tea (see note above)',
-                    style: TextStyle(fontSize: 10, color: AppTheme.greyColor, fontWeight: FontWeight.normal),
+                    style: TextStyle(
+                        fontSize: 10,
+                        color: AppTheme.greyColor,
+                        fontWeight: FontWeight.normal),
                   ),
                 ],
               ),

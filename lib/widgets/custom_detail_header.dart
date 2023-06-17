@@ -4,9 +4,8 @@ import 'package:tasty_trove/theme/app_theme.dart';
 import 'package:tasty_trove/widgets/widgets.dart';
 
 class CustomDetailHeader extends StatelessWidget {
-  const CustomDetailHeader({
-    Key? key,
-  }) : super(key: key);
+  final String tag;
+  const CustomDetailHeader({Key? key, required this.tag}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class CustomDetailHeader extends StatelessWidget {
           const _Title(),
           const _FavoriteButton(),
 
-          const _RecipeImage(),
+          _RecipeImage(tag: tag,),
 
           _BoxCard(size: size)
         ],
@@ -124,8 +123,9 @@ class _FavoriteButton extends StatelessWidget {
 }
 
 class _RecipeImage extends StatelessWidget {
+  final String tag;
   const _RecipeImage({
-    Key? key,
+    Key? key, required this.tag,
   }) : super(key: key);
 
   @override
@@ -136,8 +136,11 @@ class _RecipeImage extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
               boxShadow: [AppTheme.boxShadow()]),
-          child: const RecipeImage(
-            radius: 70,
+          child: Hero(
+            tag: tag,
+            child: const RecipeImage(
+              radius: 70,
+            ),
           )),
     );
   }
@@ -198,11 +201,16 @@ class _BoxCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.star_rounded, size: 18, color: AppTheme.yellow2Color),
-                Icon(Icons.star_rounded, size: 18, color: AppTheme.yellow2Color),
-                Icon(Icons.star_rounded, size: 18, color: AppTheme.yellow2Color),
-                Icon(Icons.star_rounded, size: 18, color: AppTheme.yellow2Color),
-                Icon(Icons.star_border_rounded, size: 18, color: AppTheme.yellow2Color),
+                Icon(Icons.star_rounded,
+                    size: 18, color: AppTheme.yellow2Color),
+                Icon(Icons.star_rounded,
+                    size: 18, color: AppTheme.yellow2Color),
+                Icon(Icons.star_rounded,
+                    size: 18, color: AppTheme.yellow2Color),
+                Icon(Icons.star_rounded,
+                    size: 18, color: AppTheme.yellow2Color),
+                Icon(Icons.star_border_rounded,
+                    size: 18, color: AppTheme.yellow2Color),
                 SizedBox(
                   width: 20,
                 ),

@@ -17,26 +17,29 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const _Header(),
-        
+
               const _SearchBar(),
-        
+
               const _RecipeCategories(),
-        
+
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: Text(
                   'Daily food advice',
                   style: titleStyle(),
                 ),
               ),
-        
+
+              // TODO: cuando se cree el DTO de la receta agregar un atributo 
+              // TODO: heroId para actualizar dicho valor y usarlo en todos los widget
               SizedBox(
-                height: 180, 
+                height: 180,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 6,
                     itemBuilder: (BuildContext context, int index) {
-                      return const CardFood();
+                      return CardFood(tag: 'tag-recipe-$index');
                     }),
               ),
             ],
@@ -166,7 +169,9 @@ class _RecipeCategories extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 6,
               itemBuilder: (BuildContext context, int index) {
-                return const CardFood();
+                return CardFood(
+                  tag: 'filter-tag-$index',
+                );
               }),
         )
       ],
