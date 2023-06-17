@@ -13,22 +13,19 @@ class RecipeDetailScreen extends StatelessWidget {
     final arguments =
         ModalRoute.of(context)?.settings.arguments as Map<String, String>?;
     final String? tag = arguments?['tag'];
-    print(arguments);
-    print(tag);
 
     return  Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Custom header
             CustomDetailHeader(tag: tag!,),
 
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
 
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(
                 'Classic Greek Salad Recipe',
@@ -39,17 +36,17 @@ class RecipeDetailScreen extends StatelessWidget {
               ),
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
 
-            _Metrics(),
+            const _Metrics(),
 
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
 
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc semper eros dolor, et luctus augue eleifend at. Nullam consequat, magna elementum rutrum ornare, elit enim porttitor nisi ...',
@@ -57,7 +54,7 @@ class RecipeDetailScreen extends StatelessWidget {
               ),
             ),
 
-            _Ingredients()
+            const _Ingredients()
 
             // ingredients
           ],

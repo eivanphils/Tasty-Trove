@@ -6,8 +6,8 @@ import 'package:tasty_trove/utils/random_number.dart';
 import 'package:tasty_trove/widgets/widgets.dart';
 
 class CardFood extends StatelessWidget {
-  String tag;
-  CardFood({Key? key, required this.tag}) : super(key: key);
+  final String tag;
+  const CardFood({Key? key, required this.tag}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
