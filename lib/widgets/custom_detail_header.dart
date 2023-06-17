@@ -109,12 +109,14 @@ class _FavoriteButton extends StatelessWidget {
       child: IconButton(
           onPressed: null,
           icon: CircleAvatar(
-            radius: 18,
             backgroundColor: Colors.white,
-            child: Icon(
-              Icons.favorite_border_rounded,
-              color: Colors.red[300],
-              size: 25,
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.favorite_border_rounded,
+                color: Colors.red[300],
+                size: 25,
+              ),
             ),
           )),
     );

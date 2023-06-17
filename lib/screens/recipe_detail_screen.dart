@@ -39,7 +39,9 @@ class RecipeDetailScreen extends StatelessWidget {
 
             _Metrics(),
 
-            SizedBox(height: 15,),
+            SizedBox(
+              height: 15,
+            ),
 
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -71,69 +73,78 @@ class _Metrics extends StatelessWidget {
           width: 103,
           height: 70,
           decoration: decorationCard(),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Icon(Icons.abc),
-              RichText(
-                text: TextSpan(
-                  text: 'Fat\n',
-                  style: DefaultTextStyle.of(context).style,
-                  children: const <TextSpan>[
-                    TextSpan(text: ' 300g'),
-                  ],
-                ),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            Image.asset('assets/fat.png', width: 28, height: 28,),
+            RichText(
+              text: TextSpan(
+                text: 'Fat\n',
+                style: metricTitleStyle(),
+                children: <TextSpan>[
+                  TextSpan(text: ' 300g',
+                style: metricSubtitleStyle(),),
+                ],
               ),
-            ]),
+            ),
+          ]),
         ),
-
-         Container(
+        Container(
           width: 103,
           height: 70,
           decoration: decorationCard(),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Icon(Icons.abc),
-              RichText(
-                text: TextSpan(
-                  text: 'Carbo\n',
-                  style: DefaultTextStyle.of(context).style,
-                  children: const <TextSpan>[
-                    TextSpan(text: ' 200g'),
-                  ],
-                ),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            Image.asset('assets/carbon.png', width: 28, height: 28,),
+            RichText(
+              text: TextSpan(
+                text: 'Carbo\n',
+                style: metricTitleStyle(),
+                children: <TextSpan>[
+                  TextSpan(text: ' 200g',
+                style: metricSubtitleStyle(),),
+                ],
               ),
-            ]),
+            ),
+          ]),
         ),
-
-         Container(
+        Container(
           width: 103,
           height: 70,
           decoration: decorationCard(),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Icon(Icons.abc),
-              RichText(
-                text: TextSpan(
-                  text: 'Kcal\n',
-                  style: DefaultTextStyle.of(context).style,
-                  children: const <TextSpan>[
-                    TextSpan(text: ' 430g'),
-                  ],
-                ),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            Image.asset('assets/kcal.png', width: 28, height: 28,),
+            RichText(
+              text: TextSpan(
+                text: 'Kcal\n',
+                style: metricTitleStyle(),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: ' 430kc',
+                    style: metricSubtitleStyle(),
+                  ),
+                ],
               ),
-            ]),
+            ),
+          ]),
         ),
       ],
     );
   }
 
+  TextStyle metricSubtitleStyle() {
+    return const TextStyle(
+        fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF797979));
+  }
+
+  TextStyle metricTitleStyle() {
+    return const TextStyle(
+        fontSize: 14, fontWeight: FontWeight.bold, color: AppTheme.greyColor);
+  }
+
   BoxDecoration decorationCard() {
     return BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.circular(15)
-        );
+        color: const Color(0xFFF0F0F0),
+        borderRadius: BorderRadius.circular(15));
   }
 }
