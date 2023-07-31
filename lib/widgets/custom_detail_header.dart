@@ -40,7 +40,11 @@ class CustomDetailHeader extends StatelessWidget {
             imageUrl: recipe.images.thumbnail.url!,
           ),
 
-          _BoxCard(size: size)
+          _BoxCard(
+            size: size,
+            title: recipe.label,
+            subtitle: '${recipe.cuisineType[0]} - ${recipe.mealType[0]} - ${recipe.dishType[0]}' ,
+          )
         ],
       ),
     );
@@ -80,9 +84,7 @@ class _BackButton extends StatelessWidget {
 }
 
 class _Title extends StatelessWidget {
-  const _Title({
-    Key? key,
-  }) : super(key: key);
+  const _Title({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +93,7 @@ class _Title extends StatelessWidget {
       child: Align(
         alignment: Alignment.center,
         child: Text(
-          'Classic Greek Salad',
+          'Tasty Trove',
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
@@ -133,7 +135,8 @@ class _RecipeImage extends StatelessWidget {
   final String imageUrl;
   const _RecipeImage({
     Key? key,
-    required this.tag, required this.imageUrl,
+    required this.tag,
+    required this.imageUrl,
   }) : super(key: key);
 
   @override
@@ -146,17 +149,21 @@ class _RecipeImage extends StatelessWidget {
               boxShadow: [AppTheme.boxShadow()]),
           child: Hero(
             tag: tag,
-            child:
-                RecipeImage(radius: 70, imageUrl: imageUrl),
+            child: RecipeImage(radius: 70, imageUrl: imageUrl),
           )),
     );
   }
 }
 
 class _BoxCard extends StatelessWidget {
+  final String title;
+  final String subtitle;
+
   const _BoxCard({
     Key? key,
     required this.size,
+    required this.title,
+    required this.subtitle,
   }) : super(key: key);
 
   final Size size;
@@ -167,7 +174,7 @@ class _BoxCard extends StatelessWidget {
       left: 20,
       top: 280,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(61, 15, 61, 15),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         width: size.width * 0.9,
         decoration: BoxDecoration(
           color: const Color(0xffffffff),
@@ -180,32 +187,32 @@ class _BoxCard extends StatelessWidget {
             ),
           ],
         ),
-        child: const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Classic Greek Salad - Recipe',
+              title,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 16,
+              style: const TextStyle(
+                  fontSize: 15,
                   fontWeight: FontWeight.bold,
                   color: AppTheme.greyColor),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
-              'Lorem ipsum dolor amet, consectetur ',
+              subtitle,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 10,
+              style: const TextStyle(
+                  fontSize: 12,
                   fontWeight: FontWeight.w500,
                   color: AppTheme.grey2Color),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.star_rounded,

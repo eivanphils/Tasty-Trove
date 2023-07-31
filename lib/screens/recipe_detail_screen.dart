@@ -16,38 +16,45 @@ class RecipeDetailScreen extends StatelessWidget {
     final String? tag = arguments?['tag'];
     final Recipe? recipe = arguments?['recipe'];
 
-    return  Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomDetailHeader(tag: tag!, recipe: recipe!,),
-
-            const SizedBox(
-              height: 30,
+            CustomDetailHeader(
+              tag: tag!,
+              recipe: recipe!,
             ),
-
+      
+            const SizedBox(
+              height: 10,
+            ),
+      
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(
-                'Classic Greek Salad Recipe',
+                'Food description',
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: AppTheme.greyColor),
               ),
             ),
-
+      
             const SizedBox(
               height: 12,
             ),
-
-            const _Metrics(),
-
+      
+            _Metrics(
+              fatQty: recipe.totalNutrients['FAT']!.quantity,
+              sugarQty: recipe.totalNutrients['SUGAR']!.quantity,
+              kcalQty: recipe.totalNutrients['ENERC_KCAL']!.quantity,
+            ),
+      
             const SizedBox(
               height: 15,
             ),
-
+      
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(
@@ -55,9 +62,11 @@ class RecipeDetailScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
               ),
             ),
-
-            const _Ingredients()
-
+      
+            _Ingredients(
+              ingredients: recipe.ingredients,
+            ),
+      
             // ingredients
           ],
         ),
@@ -67,14 +76,18 @@ class RecipeDetailScreen extends StatelessWidget {
 }
 
 class _Ingredients extends StatelessWidget {
+  final List<Ingredient> ingredients;
+
   const _Ingredients({
     Key? key,
+    required this.ingredients,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<Container> ingredients = [];
-    List.generate(5, (int index) {
+    List.generate(ingredients.length, (int index) {
+      // final ingredient = ingredients[index];
       ingredients.add(Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
         height: 66,
@@ -91,8 +104,8 @@ class _Ingredients extends StatelessWidget {
               ),
             ),
             RichText(
-              text: const TextSpan(
-                text: 'Green tea\n',
+              text: TextSpan(
+                text: 'dwd\n',
                 style: TextStyle(
                     fontSize: 14,
                     color: AppTheme.greyColor,
@@ -114,19 +127,62 @@ class _Ingredients extends StatelessWidget {
       ));
     });
 
+    // ListView.builder(
+    //       itemCount: ingredients.length,
+    //       itemBuilder: (BuildContext context, int index) {
+    //       final ingredient = ingredients[index];
+
+    //       return Container(
+    //         margin: const EdgeInsets.symmetric(vertical: 10),
+    //         height: 66,
+    //         decoration: ingredientsBoxDecoration(),
+    //         child: Row(
+    //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //           children: [
+    //             ClipRRect(
+    //               borderRadius: BorderRadius.circular(10),
+    //               child: Image.network(
+    //                 ingredient.image,
+    //                 fit: BoxFit.cover,
+    //                 width: 45,
+    //               ),
+    //             ),
+    //             RichText(
+    //               text: TextSpan(
+    //                 text: '${ingredient.food}\n',
+    //                 style: const TextStyle(
+    //                     fontSize: 14,
+    //                     color: AppTheme.greyColor,
+    //                     fontWeight: FontWeight.bold),
+    //                 children: <TextSpan>[
+    //                   TextSpan(
+    //                     text: ingredient.text,
+    //                     style: const TextStyle(
+    //                         fontSize: 10,
+    //                         color: AppTheme.greyColor,
+    //                         fontWeight: FontWeight.normal),
+    //                   ),
+    //                 ],
+    //               ),
+    //             ),
+    //           ],
+    //         ),
+    //       );
+    //     })
+
     return Padding(
-      padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
+      padding: EdgeInsets.only(left: 30, right: 30, top: 20),
       child: Wrap(
         children: [
-          const Text(
+          Text(
             'Ingredients',
             style: TextStyle(
                 color: AppTheme.greyColor,
                 fontSize: 16,
                 fontWeight: FontWeight.bold),
           ),
-          ...ingredients
         ],
+        // ...ingredients
       ),
     );
   }
@@ -138,8 +194,14 @@ class _Ingredients extends StatelessWidget {
 }
 
 class _Metrics extends StatelessWidget {
+  final double fatQty;
+  final double sugarQty;
+  final double kcalQty;
   const _Metrics({
     Key? key,
+    required this.fatQty,
+    required this.sugarQty,
+    required this.kcalQty,
   }) : super(key: key);
 
   @override
@@ -164,7 +226,7 @@ class _Metrics extends StatelessWidget {
                 style: metricTitleStyle(),
                 children: <TextSpan>[
                   TextSpan(
-                    text: '300g',
+                    text: fatQty.toStringAsFixed(2),
                     style: metricSubtitleStyle(),
                   ),
                 ],
@@ -185,11 +247,11 @@ class _Metrics extends StatelessWidget {
             ),
             RichText(
               text: TextSpan(
-                text: 'Carbo\n',
+                text: 'Sugar\n',
                 style: metricTitleStyle(),
                 children: <TextSpan>[
                   TextSpan(
-                    text: '200g',
+                    text: sugarQty.toStringAsFixed(2),
                     style: metricSubtitleStyle(),
                   ),
                 ],
@@ -214,7 +276,7 @@ class _Metrics extends StatelessWidget {
                 style: metricTitleStyle(),
                 children: <TextSpan>[
                   TextSpan(
-                    text: '430kc',
+                    text: kcalQty.toStringAsFixed(2),
                     style: metricSubtitleStyle(),
                   ),
                 ],

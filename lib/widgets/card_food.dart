@@ -34,18 +34,14 @@ class CardFood extends StatelessWidget {
           ),
           Text(
             recipe.label,
+            textAlign: TextAlign.center,
             style: const TextStyle(
                 color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 3,
           ),
-          const Text(
-            'Lorem ipsum dolor amet ...',
-            style: TextStyle(fontSize: 9, color: Colors.white),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          )
+        
         ]),
       ),
     );
