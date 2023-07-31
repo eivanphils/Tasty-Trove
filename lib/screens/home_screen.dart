@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
+import 'package:tasty_trove/providers/providers.dart';
 import 'package:tasty_trove/theme/app_theme.dart';
 import 'package:tasty_trove/widgets/widgets.dart';
 
@@ -10,6 +13,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final recipeProvider = Provider.of<RecipeProvider>(context);
+
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -31,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              // TODO: cuando se cree el DTO de la receta agregar un atributo 
+              // TODO: cuando se cree el DTO de la receta agregar un atributo
               // TODO: heroId para actualizar dicho valor y usarlo en todos los widget
               SizedBox(
                 height: 180,
