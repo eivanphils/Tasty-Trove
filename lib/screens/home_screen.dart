@@ -14,8 +14,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final recipeProvider = Provider.of<RecipeProvider>(context);
+    final recipes = recipeProvider.onHitRecipes;
 
-
+    print(recipeProvider.onHitRecipes);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -43,9 +44,12 @@ class HomeScreen extends StatelessWidget {
                 height: 180,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 6,
+                    itemCount: recipes.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return CardFood(tag: 'tag-recipe-$index');
+                      return CardFood(
+                        tag: 'tag-recipe-$index',
+                        recipe: recipes[index].recipe,
+                      );
                     }),
               ),
             ],
@@ -111,6 +115,8 @@ class _RecipeCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final recipeProvider = Provider.of<RecipeProvider>(context);
+    final recipes = recipeProvider.onHitRecipes;
     return Column(
       children: [
         Padding(
@@ -173,10 +179,11 @@ class _RecipeCategories extends StatelessWidget {
           margin: const EdgeInsets.only(top: 10),
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 6,
+              itemCount: recipes.length,
               itemBuilder: (BuildContext context, int index) {
                 return CardFood(
                   tag: 'filter-tag-$index',
+                  recipe: recipes[index].recipe,
                 );
               }),
         )

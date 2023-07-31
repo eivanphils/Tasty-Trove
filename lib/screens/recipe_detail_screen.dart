@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tasty_trove/theme/app_theme.dart';
 
+import 'package:tasty_trove/theme/app_theme.dart';
+import 'package:tasty_trove/models/models.dart';
 import 'package:tasty_trove/widgets/custom_detail_header.dart';
 
 class RecipeDetailScreen extends StatelessWidget {
@@ -11,15 +12,16 @@ class RecipeDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final arguments =
-        ModalRoute.of(context)?.settings.arguments as Map<String, String>?;
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
     final String? tag = arguments?['tag'];
+    final Recipe? recipe = arguments?['recipe'];
 
     return  Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomDetailHeader(tag: tag!,),
+            CustomDetailHeader(tag: tag!, recipe: recipe!,),
 
             const SizedBox(
               height: 30,

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:tasty_trove/theme/app_theme.dart';
+import 'package:tasty_trove/models/models.dart';
 import 'package:tasty_trove/widgets/widgets.dart';
 
 class CustomDetailHeader extends StatelessWidget {
   final String tag;
-  const CustomDetailHeader({Key? key, required this.tag}) : super(key: key);
+  final Recipe recipe;
+  const CustomDetailHeader({Key? key, required this.tag, required this.recipe})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,10 @@ class CustomDetailHeader extends StatelessWidget {
           const _Title(),
           const _FavoriteButton(),
 
-          _RecipeImage(tag: tag,),
+          _RecipeImage(
+            tag: tag,
+            imageUrl: recipe.images.thumbnail.url!,
+          ),
 
           _BoxCard(size: size)
         ],
@@ -124,8 +130,10 @@ class _FavoriteButton extends StatelessWidget {
 
 class _RecipeImage extends StatelessWidget {
   final String tag;
+  final String imageUrl;
   const _RecipeImage({
-    Key? key, required this.tag,
+    Key? key,
+    required this.tag, required this.imageUrl,
   }) : super(key: key);
 
   @override
@@ -138,9 +146,8 @@ class _RecipeImage extends StatelessWidget {
               boxShadow: [AppTheme.boxShadow()]),
           child: Hero(
             tag: tag,
-            child: const RecipeImage(
-              radius: 70,
-            ),
+            child:
+                RecipeImage(radius: 70, imageUrl: imageUrl),
           )),
     );
   }
