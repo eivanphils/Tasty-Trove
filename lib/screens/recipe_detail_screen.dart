@@ -25,11 +25,11 @@ class RecipeDetailScreen extends StatelessWidget {
               tag: tag!,
               recipe: recipe!,
             ),
-      
+
             const SizedBox(
               height: 10,
             ),
-      
+
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(
@@ -40,21 +40,21 @@ class RecipeDetailScreen extends StatelessWidget {
                     color: AppTheme.greyColor),
               ),
             ),
-      
+
             const SizedBox(
               height: 12,
             ),
-      
+
             _Metrics(
               fatQty: recipe.totalNutrients['FAT']!.quantity,
               sugarQty: recipe.totalNutrients['SUGAR']!.quantity,
               kcalQty: recipe.totalNutrients['ENERC_KCAL']!.quantity,
             ),
-      
+
             const SizedBox(
               height: 15,
             ),
-      
+
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(
@@ -62,11 +62,11 @@ class RecipeDetailScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
               ),
             ),
-      
+
             _Ingredients(
               ingredients: recipe.ingredients,
             ),
-      
+
             // ingredients
           ],
         ),
@@ -85,104 +85,69 @@ class _Ingredients extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Container> ingredients = [];
-    List.generate(ingredients.length, (int index) {
-      // final ingredient = ingredients[index];
-      ingredients.add(Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
-        height: 66,
-        decoration: ingredientsBoxDecoration(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                'https://www.edamam.com/food-img/db9/db99a766fad87e02b4eac4840daaeaad.jpg',
-                fit: BoxFit.cover,
-                width: 45,
-              ),
-            ),
-            RichText(
-              text: TextSpan(
-                text: 'dwd\n',
-                style: TextStyle(
-                    fontSize: 14,
-                    color: AppTheme.greyColor,
-                    fontWeight: FontWeight.bold),
-                children: <TextSpan>[
-                  TextSpan(
-                    text:
-                        '2 teaspoons (6g) Japanese matcha green tea (see note above)',
-                    style: TextStyle(
-                        fontSize: 10,
-                        color: AppTheme.greyColor,
-                        fontWeight: FontWeight.normal),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ));
-    });
-
-    // ListView.builder(
-    //       itemCount: ingredients.length,
-    //       itemBuilder: (BuildContext context, int index) {
-    //       final ingredient = ingredients[index];
-
-    //       return Container(
-    //         margin: const EdgeInsets.symmetric(vertical: 10),
-    //         height: 66,
-    //         decoration: ingredientsBoxDecoration(),
-    //         child: Row(
-    //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //           children: [
-    //             ClipRRect(
-    //               borderRadius: BorderRadius.circular(10),
-    //               child: Image.network(
-    //                 ingredient.image,
-    //                 fit: BoxFit.cover,
-    //                 width: 45,
-    //               ),
-    //             ),
-    //             RichText(
-    //               text: TextSpan(
-    //                 text: '${ingredient.food}\n',
-    //                 style: const TextStyle(
-    //                     fontSize: 14,
-    //                     color: AppTheme.greyColor,
-    //                     fontWeight: FontWeight.bold),
-    //                 children: <TextSpan>[
-    //                   TextSpan(
-    //                     text: ingredient.text,
-    //                     style: const TextStyle(
-    //                         fontSize: 10,
-    //                         color: AppTheme.greyColor,
-    //                         fontWeight: FontWeight.normal),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-    //           ],
-    //         ),
-    //       );
-    //     })
-
     return Padding(
-      padding: EdgeInsets.only(left: 30, right: 30, top: 20),
+      padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
       child: Wrap(
         children: [
-          Text(
-            'Ingredients',
+          const Text(
+            'Ingredients:',
             style: TextStyle(
                 color: AppTheme.greyColor,
                 fontSize: 16,
                 fontWeight: FontWeight.bold),
           ),
+
+          SizedBox(
+            height: 400,
+            
+            child: ListView.builder(
+              padding: const EdgeInsets.all(0),
+                itemCount: ingredients.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final ingredient = ingredients[index];
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.only(left: 12),
+                    height: 66,
+                    decoration: ingredientsBoxDecoration(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            ingredient.image,
+                            fit: BoxFit.cover,
+                            width: 45,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            text: '${ingredient.food}\n',
+                            style: const TextStyle(
+                                fontSize: 14,
+                                color: AppTheme.greyColor,
+                                fontWeight: FontWeight.bold),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: ingredient.text,
+                                style: const TextStyle(
+                                    fontSize: 10,
+                                    color: AppTheme.greyColor,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+          )
         ],
-        // ...ingredients
       ),
     );
   }
