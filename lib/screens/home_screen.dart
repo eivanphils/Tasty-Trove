@@ -16,7 +16,6 @@ class HomeScreen extends StatelessWidget {
     final recipeProvider = Provider.of<RecipeProvider>(context);
     final recipes = recipeProvider.onHitRecipes;
 
-    print(recipeProvider.onHitRecipes);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -38,8 +37,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              // TODO: cuando se cree el DTO de la receta agregar un atributo
-              // TODO: heroId para actualizar dicho valor y usarlo en todos los widget
               SizedBox(
                 height: 180,
                 child: ListView.builder(

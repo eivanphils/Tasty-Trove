@@ -13,7 +13,6 @@ class RecipeProvider extends ChangeNotifier {
   bool _isLoading = false;
 
   RecipeProvider() {
-    print('recipeProvider');
     getAllRecipes();
   }
 

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:tasty_trove/theme/app_theme.dart';
-
 class RecipeImage extends StatelessWidget {
   final double radius;
   final String imageUrl;
