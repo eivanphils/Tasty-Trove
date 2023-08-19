@@ -10,7 +10,7 @@ workflows:
         script: flutter pub get
 
       - name: Generate icons
-        script: flutter pub run flutter_launcher_icons:main
+        script: dart run flutter_launcher_icons:main
 
       - name: Build Android APK
         script: flutter build apk --release
