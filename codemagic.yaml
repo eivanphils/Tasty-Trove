@@ -1,8 +1,7 @@
 workflows:
-  version: 2
 
   flutter_android_ios:
-    name: Flutter Android and iOS
+    name: Tasty Trove
     environment:
       flutter: latest
 
@@ -26,5 +25,5 @@ workflows:
     publishing:
       email:
         recipients:
-          - your-email@example.com
+          - eivanphils@gmail.com
 
