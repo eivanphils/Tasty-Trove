@@ -3,7 +3,7 @@ workflows:
   flutter_android_ios:
     name: Tasty Trove
     environment:
-      flutter: latest
+      flutter: stable
 
     scripts:
       - name: Install dependencies
