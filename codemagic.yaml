@@ -1,0 +1,30 @@
+workflows:
+  version: 2
+
+  flutter_android_ios:
+    name: Flutter Android and iOS
+    environment:
+      flutter: latest
+
+    scripts:
+      - name: Install dependencies
+        script: flutter pub get
+
+      - name: Generate icons
+        script: flutter pub run flutter_launcher_icons:main
+
+      - name: Build Android APK
+        script: flutter build apk --release
+
+      - name: Build iOS IPA
+        script: flutter build ios --release --no-codesign
+
+    artifacts:
+      - build/app/outputs/apk/release/app-release.apk
+      - build/ios/iphoneos/Runner.ipa
+
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+
