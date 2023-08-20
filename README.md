@@ -74,11 +74,11 @@ Luego el directorio lib
 
 ### Onboarding:
 
-<img src="https://github.com/eivanphils//Tasty-Trove/blob/master/assets/screenshoot/onboarding.png" width="200">   
+<img src="https://github.com/eivanphils/Tasty-Trove/blob/master/assets/screenshoot/onboarding.png" width="200">   
 
-<img src="https://github.com/eivanphils//Tasty-Trove/blob/master/assets/screenshoot/onboarding-2.png" width="200">   
+<img src="https://github.com/eivanphils/Tasty-Trove/blob/master/assets/screenshoot/onboarding-2.png" width="200">   
 
-<img src="https://github.com/eivanphils//Tasty-Trove/blob/master/assets/screenshoot/onboarding-3.png" width="200">    
+<img src="https://github.com/eivanphils/Tasty-Trove/blob/master/assets/screenshoot/onboarding-3.png" width="200">    
 
 
 ### Login:
@@ -88,12 +88,12 @@ Luego el directorio lib
 
 ### Home:
    
-<img src="https://github.com/eivanphils//Tasty-Trove/blob/master/assets/screenshoot/home.png" width="200">   
+<img src="https://github.com/eivanphils/Tasty-Trove/blob/master/assets/screenshoot/home.png" width="200">   
 
 
 ### Detalle Receta:
 
-<img src="https://github.com/eivanphils//Tasty-Trove/blob/master/assets/screenshoot/detail-recipe.png" width="200">   
+<img src="https://github.com/eivanphils/Tasty-Trove/blob/master/assets/screenshoot/detail-recipe.png" width="200">   
 
 
 ## Despliegue continuo
