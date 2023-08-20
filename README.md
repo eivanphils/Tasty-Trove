@@ -83,7 +83,7 @@ Luego el directorio lib
 
 ### Login:
 
-<img src="https://github.com/eivanphils//Tasty-Trove/blob/master/assets/screenshoot/login.png" width="200">   
+<img src="https://github.com/eivanphils/Tasty-Trove/blob/master/assets/screenshoot/login.png" width="200">   
 
 
 ### Home:
