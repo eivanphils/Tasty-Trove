@@ -27,3 +27,9 @@ workflows:
         recipients:
           - eivanphils@gmail.com
 
+trigger:
+  event:
+    - push:
+        branch:
+          include:
+            - master # Establece la rama que desencadenará el proceso de compilación/despliegue
