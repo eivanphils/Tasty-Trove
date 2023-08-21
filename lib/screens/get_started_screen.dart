@@ -119,56 +119,58 @@ class _PageLayout extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          SizedBox(
-            height: size.height * 0.2,
-          ),
-          SizedBox(
-              width: size.width,
-              child: Lottie.asset(illustration, repeat: false)),
-          const SizedBox(
-            height: 20,
-          ),
-          Text(title,
-              style: const TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center),
-          const SizedBox(
-            height: 30,
-          ),
-          SizedBox(
-            width: 300,
-            child: Text(description,
-                style: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500),
-                textAlign: TextAlign.center),
-          ),
-          if (isLastPage)
-            const SizedBox(
-              height: 80,
-            ),
-          if (isLastPage)
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
             SizedBox(
-              width: 150,
-              child: ElevatedButton(
-                  onPressed: () => Navigator.pushReplacementNamed(context, LoginScreen.routeName),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: AppTheme.primaryColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30))),
-                  child: const Text(
-                    'START',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  )),
+              height: size.height * 0.2,
             ),
-        ],
+            SizedBox(
+                width: size.width,
+                child: Lottie.asset(illustration, repeat: false)),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(title,
+                style: const TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center),
+            const SizedBox(
+              height: 30,
+            ),
+            SizedBox(
+              width: 300,
+              child: Text(description,
+                  style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500),
+                  textAlign: TextAlign.center),
+            ),
+            if (isLastPage)
+              const SizedBox(
+                height: 80,
+              ),
+            if (isLastPage)
+              SizedBox(
+                width: 150,
+                child: ElevatedButton(
+                    onPressed: () => Navigator.pushReplacementNamed(context, LoginScreen.routeName),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: AppTheme.primaryColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30))),
+                    child: const Text(
+                      'START',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    )),
+              ),
+          ],
+        ),
       ),
     );
   }
