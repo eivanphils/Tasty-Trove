@@ -34,7 +34,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                   illustration: 'assets/animations/recipes.json',
                   title: 'Find recipes',
                   description:
-                      'Unleash your inner \'flavor-seeker\' and embark on a culinary adventure!!!'),
+                      'Unleash your inner \'flavor-seeker\' and embark on a culinary adventure!'),
               _PageLayout(
                 illustration: 'assets/animations/ratings.json',
                 title: 'Easy to cook',
