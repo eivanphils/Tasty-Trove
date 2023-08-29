@@ -10,20 +10,17 @@ class RecipeProvider extends ChangeNotifier {
   final String _apiId = 'f3893902';
 
   List<Hit> onHitRecipes = [];
-  bool _isLoading = false;
 
   RecipeProvider() {
     getAllRecipes();
   }
 
   void getAllRecipes({String? query}) async {
-    _isLoading = true;
     final jsonData = await _getJsonData(endpoint: 'api/recipes/v2');
     final apiResponse = apiResponseFromJson(jsonData);
 
     onHitRecipes = apiResponse.hits;
 
-    _isLoading = false;
     notifyListeners();
   }
 

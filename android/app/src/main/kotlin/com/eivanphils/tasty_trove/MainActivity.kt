@@ -1,4 +1,4 @@
-package com.example.tasty_trove
+package com.eivanphils.tasty_trove
 
 import io.flutter.embedding.android.FlutterActivity
 
