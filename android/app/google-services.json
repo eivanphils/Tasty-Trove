@@ -37,6 +37,13 @@
             {
               "client_id": "907714433448-6cbp30ar19h9p7o9449atesd7noaa3f4.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "907714433448-gbaal93iom8jv1hpq1i13sh5rpriqptb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tastyTrove"
+              }
             }
           ]
         }
