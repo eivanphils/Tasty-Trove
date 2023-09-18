@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
+import 'package:tasty_trove/services/services.dart';
 import 'package:tasty_trove/providers/providers.dart';
 import 'package:tasty_trove/router/app_routes.dart';
 import 'package:tasty_trove/theme/app_theme.dart';
 
 void main() async {
+  // We make sure that the application is initialized.
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+
+  await PushNotificationService.initializeApp();
+  
   runApp(const AppState());
 }
 
@@ -21,10 +21,15 @@ class AppState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_) => RecipeProvider(), lazy: true,)
-    ],
-    child: const MyApp(),);
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => RecipeProvider(),
+          lazy: true,
+        )
+      ],
+      child: const MyApp(),
+    );
   }
 }
 
