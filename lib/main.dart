@@ -12,7 +12,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await PushNotificationService.initializeApp();
-  
+
   runApp(const AppState());
 }
 
@@ -33,8 +33,23 @@ class AppState extends StatelessWidget {
   }
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    PushNotificationService.messageStream.listen((message) {
+      print('MyApp $message');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

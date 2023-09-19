@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -13,17 +15,26 @@ import 'package:tasty_trove/firebase_options.dart';
 class PushNotificationService {
   static FirebaseMessaging messaging = FirebaseMessaging.instance;
   static String? token;
+  static final StreamController<String> _messageStream =
+      StreamController.broadcast();
+  static Stream<String> get messageStream => _messageStream.stream;
 
   static Future _backgroundHandler(RemoteMessage message) async {
     print('_backgroundHandler ${message.messageId}');
+    _messageStream.add(message.notification?.body ?? 'Nulo');
+    print(message.data);
   }
 
   static Future _onMessageHandler(RemoteMessage message) async {
     print('_onMessageHandler ${message.messageId}');
+    _messageStream.add(message.notification?.body ?? 'Nulo');
+    print(message.data['appId']);
   }
 
   static Future _onMessageOpenAppHandler(RemoteMessage message) async {
     print('_onMessageOpenAppHandler ${message.messageId}');
+    _messageStream.add(message.notification?.body ?? 'Nulo');
+    print(message.data);
   }
 
   static Future initializeApp() async {
@@ -31,8 +42,9 @@ class PushNotificationService {
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
 
-    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-        alert: true, badge: true, sound: true);
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+            alert: true, badge: true, sound: true);
 
     token = await FirebaseMessaging.instance.getToken();
     print('token $token');
@@ -48,5 +60,9 @@ class PushNotificationService {
     FirebaseMessaging.onMessageOpenedApp.listen(_onMessageOpenAppHandler);
 
     //local Notification
+  }
+
+  static closeStreams() {
+    _messageStream.close();
   }
 }
