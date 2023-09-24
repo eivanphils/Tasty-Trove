@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:lottie/lottie.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 import 'package:tasty_trove/screens/screens.dart';
 import 'package:tasty_trove/theme/app_theme.dart';
@@ -18,6 +19,17 @@ class GetStartedScreen extends StatefulWidget {
 class _GetStartedScreenState extends State<GetStartedScreen> {
   final PageController pageController = PageController();
   final ValueNotifier<int> selectedIndex = ValueNotifier(0);
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  final List<String> pagesName = [
+    'Onboarding 1',
+    'Onboarding 2',
+    'Onboarding 3',
+  ];
+  @override
+  void initState() {
+    super.initState();
+    analytics.setAnalyticsCollectionEnabled(true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +55,20 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                 isLastPage: true,
               ),
             ],
-            onPageChanged: (value) => selectedIndex.value = value,
+            onPageChanged: (value) async {
+              selectedIndex.value = value;
+              await FirebaseAnalytics.instance.logAppOpen();
+              await FirebaseAnalytics.instance
+                  .logLogin(loginMethod: 'inicio de prueba');
+              print('log de google analytics');
+              await FirebaseAnalytics.instance.logEvent(
+                name: 'page_tracked',
+                parameters: {
+                  'page_name': pagesName[value],
+                  'page_index': value,
+                },
+              );
+            },
           )),
           _PaginationInfo(selectedIndex: selectedIndex),
           _BottomPagination(
@@ -157,7 +182,17 @@ class _PageLayout extends StatelessWidget {
               SizedBox(
                 width: 150,
                 child: ElevatedButton(
-                    onPressed: () => Navigator.pushReplacementNamed(context, LoginScreen.routeName),
+                    onPressed: () async {
+                      Navigator.pushReplacementNamed(
+                          context, LoginScreen.routeName);
+
+                      await FirebaseAnalytics.instance.logEvent(
+                        name: 'page_tracked',
+                        parameters: {
+                          'page_name': LoginScreen.routeName,
+                        },
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor: AppTheme.primaryColor,
@@ -223,29 +258,29 @@ class _BottomPagination extends StatelessWidget {
       valueListenable: selectedIndex,
       builder: (context, index, child) {
         return Padding(
-          padding: const EdgeInsets.only(top: 20, bottom: 40, left: 24, right: 24),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _Bottom(
-                  selectedIndex: selectedIndex,
-                  pageController: pageController,
-                  isVisible: selectedIndex.value > 0,
-                  foregroundColor: Colors.white,
-                  backgroundColor: AppTheme.primaryColor,
-                  label: 'Back',
-                  pageToNavigate: selectedIndex.value - 1,
-                ),
-                _Bottom(
-                  selectedIndex: selectedIndex,
-                  pageController: pageController,
-                  isVisible: selectedIndex.value < 2,
-                  foregroundColor: AppTheme.primaryColor,
-                  backgroundColor: Colors.white,
-                  label: 'Next',
-                  pageToNavigate: selectedIndex.value + 1,
-                ),
-              ]),
+          padding:
+              const EdgeInsets.only(top: 20, bottom: 40, left: 24, right: 24),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            _Bottom(
+              selectedIndex: selectedIndex,
+              pageController: pageController,
+              isVisible: selectedIndex.value > 0,
+              foregroundColor: Colors.white,
+              backgroundColor: AppTheme.primaryColor,
+              label: 'Back',
+              pageToNavigate: selectedIndex.value - 1,
+            ),
+            _Bottom(
+              selectedIndex: selectedIndex,
+              pageController: pageController,
+              isVisible: selectedIndex.value < 2,
+              foregroundColor: AppTheme.primaryColor,
+              backgroundColor: Colors.white,
+              label: 'Next',
+              pageToNavigate: selectedIndex.value + 1,
+            ),
+          ]),
         );
       },
     );
@@ -282,8 +317,7 @@ class _Bottom extends StatelessWidget {
         visible: isVisible,
         child: ElevatedButton(
             onPressed: () {
-              pageController.animateToPage(
-                  pageToNavigate,
+              pageController.animateToPage(pageToNavigate,
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeIn);
             },

@@ -40,6 +40,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   firebase_core: ^2.15.1
   firebase_messaging: ^14.6.7
+  firebase_analytics: ^10.5.0
 
 flutter_icons:
   android: "ic_launcher"

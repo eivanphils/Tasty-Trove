@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
+
 import 'package:tasty_trove/screens/screens.dart';
 import 'package:tasty_trove/theme/app_theme.dart';
 import 'package:tasty_trove/widgets/widgets.dart';
@@ -85,8 +87,15 @@ class _LoginForm extends StatelessWidget {
             width: 240,
             height: 50,
             child: ElevatedButton(
-                onPressed: () => Navigator.pushReplacementNamed(
-                    context, MainScreen.routeName),
+                onPressed: () async {
+                  Navigator.pushReplacementNamed(context, MainScreen.routeName);
+                  await FirebaseAnalytics.instance.logEvent(
+                    name: 'page_tracked',
+                    parameters: {
+                        'page_name': MainScreen.routeName,
+                    },
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: AppTheme.primaryColor,

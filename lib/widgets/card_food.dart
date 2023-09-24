@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
+
 import 'package:tasty_trove/models/models.dart';
 import 'package:tasty_trove/screens/recipe_detail_screen.dart';
 import 'package:tasty_trove/theme/app_theme.dart';
@@ -16,8 +18,22 @@ class CardFood extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color color = AppTheme.colors[RandomNumber.getRandomNumber()];
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, RecipeDetailScreen.routeName,
-          arguments: {'tag': tag, 'recipe': recipe}),
+      onTap: () async {
+        Navigator.pushNamed(context, RecipeDetailScreen.routeName,
+            arguments: {'tag': tag, 'recipe': recipe});
+        await FirebaseAnalytics.instance.logEvent(
+          name: 'page_tracked',
+          parameters: {
+            'page_name': 'Detalle receta - ${recipe.label}',
+          },
+        );
+        await FirebaseAnalytics.instance.logEvent(
+          name: 'selectFood',
+          parameters: {
+              'recipe': recipe.label,
+          },
+        ); 
+      },
       child: Container(
         margin: const EdgeInsets.only(
           left: 20,
@@ -28,7 +44,11 @@ class CardFood extends StatelessWidget {
             color: color.withOpacity(0.7),
             borderRadius: BorderRadius.circular(30)),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Hero(tag: tag, child: RecipeImage(imageUrl: recipe.images.thumbnail.url!,)),
+          Hero(
+              tag: tag,
+              child: RecipeImage(
+                imageUrl: recipe.images.thumbnail.url!,
+              )),
           const SizedBox(
             height: 10,
           ),
@@ -41,7 +61,6 @@ class CardFood extends StatelessWidget {
           const SizedBox(
             height: 3,
           ),
-        
         ]),
       ),
     );
