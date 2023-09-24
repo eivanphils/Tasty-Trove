@@ -21,19 +21,19 @@ class PushNotificationService {
 
   static Future _backgroundHandler(RemoteMessage message) async {
     print('_backgroundHandler ${message.messageId}');
-    _messageStream.add(message.notification?.body ?? 'Nulo');
+    _messageStream.add(message.data['producto'] ?? 'Nulo');
     print(message.data);
   }
 
   static Future _onMessageHandler(RemoteMessage message) async {
     print('_onMessageHandler ${message.messageId}');
-    _messageStream.add(message.notification?.body ?? 'Nulo');
-    print(message.data['appId']);
+    _messageStream.add(message.data['producto'] ?? 'Nulo');
+    print(message.data);
   }
 
   static Future _onMessageOpenAppHandler(RemoteMessage message) async {
     print('_onMessageOpenAppHandler ${message.messageId}');
-    _messageStream.add(message.notification?.body ?? 'Nulo');
+    _messageStream.add(message.data['producto'] ?? 'Nulo');
     print(message.data);
   }
 
