@@ -257,7 +257,7 @@ class Ingredient {
         weight: json["weight"]?.toDouble(),
         foodCategory: json["foodCategory"],
         foodId: json["foodId"],
-        image: json["image"],
+        image: json["image"] = 'null',
     );
 
     Map<String, dynamic> toJson() => {

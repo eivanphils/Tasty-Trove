@@ -11,9 +11,14 @@ class RecipeImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: radius, // Define el tamaño del círculo
-      backgroundImage: NetworkImage(imageUrl), // Especifica la URL de la imagen
-    );
+    print('images');
+    print(imageUrl);
+    return imageUrl.isNotEmpty
+        ? Image.asset('assets/no-image.jpg')
+        : CircleAvatar(
+            radius: radius, // Define el tamaño del círculo
+            backgroundImage:
+                NetworkImage(imageUrl), // Especifica la URL de la imagen
+          );
   }
 }
